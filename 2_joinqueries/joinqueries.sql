@@ -23,3 +23,10 @@ FROM students RIGHT OUTER JOIN cohorts ON cohorts.id = cohort_id;
 ---this third query will return all rows from both tables, even when there is no match.
 SELECT students.name as student_name, email, cohorts.name as cohort_name
 FROM students FULL OUTER JOIN cohorts ON cohorts.id = cohort_id;
+
+--Query for rollover students--
+SELECT students.name, cohorts.name, cohorts.start_date as cohort_start_date, students.start_date as student_start_date
+FROM students
+JOIN cohorts ON cohort_id = cohorts.id
+WHERE cohorts.start_date != students.start_date
+ORDER BY cohort_start_date;
